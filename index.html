@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="style.css">
+  <link rel="shortcut icon" href="img/Favicon.svg" type="image/x-icon">
+</head>
+<body>
+<audio id="clickSound" src="sounds/Click_stereo.ogg.mp3"></audio>
+ <img src="img/minecraft_title2.png" class="logo">
+  <div class="box">
+<title>Minecraft Турниры</title>
+    <h1>Регистрация</h1>
+
+    <input type="text" placeholder="Логин">
+
+    <input type="password" placeholder="Пароль">
+
+    <button class="mc-btn">
+      СОЗДАТЬ АККАУНТ
+    </button>
+
+  </div>
+
+
+    <!-- ТАБЛИЦА КОМАНД -->
+
+    <div class="card">
+      <h2>Таблица команд</h2>
+
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Команда</th>
+            <th>Игроки</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>Nether Legends</td>
+            <td>Steve, Alex, Max</td>
+          </tr>
+
+          <tr>
+            <td>2</td>
+            <td>Diamond Squad</td>
+            <td>Leo, Kate, Ivan</td>
+          </tr>
+
+          <tr>
+            <td>3</td>
+            <td>Block Masters</td>
+            <td>Nikita, Danil, Artyom</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- ТАБЛИЦА МАТЧЕЙ -->
+
+    <div class="card">
+      <h2>Таблица матчей</h2>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Матч</th>
+            <th>Команда 1</th>
+            <th>Счёт</th>
+            <th>Команда 2</th>
+            <th>Статус</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>Nether Legends</td>
+            <td>2 : 1</td>
+            <td>Diamond Squad</td>
+            <td class="win">Завершён</td>
+          </tr>
+
+          <tr>
+            <td>2</td>
+            <td>Block Masters</td>
+            <td>1 : 1</td>
+            <td>Creeper Team</td>
+            <td class="live">Идёт</td>
+          </tr>
+
+          <tr>
+            <td>3</td>
+            <td>Pixel Team</td>
+            <td>0 : 0</td>
+            <td>Craft Kings</td>
+            <td class="wait">Ожидание</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- ЛИДЕРБОРД -->
+
+    <div class="card">
+      <h2>Лидерборд</h2>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Место</th>
+            <th>Команда</th>
+            <th>Очки</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr class="gold">
+            <td>🥇 1</td>
+            <td>Nether Legends</td>
+            <td>250</td>
+          </tr>
+
+          <tr class="silver">
+            <td>🥈 2</td>
+            <td>Diamond Squad</td>
+            <td>220</td>
+          </tr>
+
+          <tr class="bronze">
+            <td>🥉 3</td>
+            <td>Block Masters</td>
+            <td>180</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+
+<script>
+  const buttons = document.querySelectorAll("button");
+  const sound = document.getElementById("clickSound");
+
+  buttons.forEach(btn => {
+    btn.addEventListener("click", () => {
+      sound.currentTime = 0;
+      sound.play();
+    });
+  });
+</script>
+
+
+</body>
+</html>
+
+
+
+

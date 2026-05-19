@@ -1,8 +1,0 @@
-{% load static %}
-<link rel="stylesheet" href="{% static 'notes/css/custom.css' %}">
-<h1>{{ note.title }}</h1>
-<p>{{ note.content }}</p>
-
-<a href="{% url 'note_edit' note.id %}" class="btn">Редактировать</a>
-<a href="{% url 'note_delete' note.id %}" class="btn" style="background-color:red;">Удалить</a>
-<a href="{% url 'note_list' %}" class="btn">Назад</a>
