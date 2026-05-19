@@ -1,23 +1,25 @@
-# Node.js & npm
-node_modules/
-package-lock.json
-npm-debug.log
-npm-debug.log.*
-yarn-error.log
-yarn-debug.log*
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Test binary, built with `go test -c`
+*.test
+
+# Output of the go coverage tool, specifically when used with LiteIDE
+*.out
+
+# Dependency directories (remove the comment below to include it)
+# vendor/
+
+# Go workspace file
+go.work
 
 # Environment variables
 .env
 .env.local
 .env.*.local
-
-# Build directories
-dist/
-build/
-out/
-.next/
-.nuxt/
-.cache/
 
 # IDE & Editor
 .vscode/
@@ -29,34 +31,6 @@ out/
 *.sublime-project
 *.sublime-workspace
 
-# Testing
-coverage/
-.nyc_output/
-junit.xml
-
 # Logs
 logs/
 *.log
-
-# Runtime data
-pids/
-*.pid
-*.seed
-
-# OS
-Thumbs.db
-.DS_Store
-
-# Optional npm cache directory
-.npm
-
-# Optional REPL history
-.node_repl_history
-
-# Production build files (for SSG/static exports)
-out/
-.static/
-
-# Temporary files
-*.tmp
-.temp/

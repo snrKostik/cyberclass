@@ -1,0 +1,192 @@
+package templates
+
+import (
+	"fmt"
+	"github.com/snrkostik/cyberclass/models"
+)
+
+templ MatchCard(
+	tournamentID int64,
+	match models.MatchView,
+) {
+	<div
+		class="
+        bg-zinc-900
+        border
+        @MatchStatusClass(match.Status)
+        rounded-xl
+        p-4
+        w-72
+        shadow-lg
+        "
+	>
+		<form
+			hx-post={ fmt.Sprintf(
+                "/matches/%d/complete",
+                match.ID,
+                ) }
+			hx-target="#bracket"
+			hx-swap="outerHTML"
+			class="space-y-4"
+		>
+			<div class="space-y-2">
+				<div
+					class={
+						"flex justify-between items-center rounded px-2 py-1",
+					
+						templ.KV(
+							"bg-green-900/40 font-bold",
+							match.WinnerTeamID != nil &&
+								match.Team1ID != nil &&
+								*match.WinnerTeamID == *match.Team1ID,
+						),
+					}
+				>
+					if match.Team1Name == "" {
+						<span class="text-zinc-500">
+							TBD
+						</span>
+					} else {
+						<span>{ match.Team1Name }</span>
+					}
+					<input
+						type="number"
+						name="score1"
+						value={ fmt.Sprintf("%d", match.Score1) }
+						disabled?={ match.Status == models.MatchStatusCompleted }
+						class="w-16 bg-zinc-800 rounded px-2 py-1"
+					/>
+				</div>
+				<div
+					class={
+						"flex justify-between items-center rounded px-2 py-1",
+					
+						templ.KV(
+							"bg-green-900/40 font-bold",
+							match.WinnerTeamID != nil &&
+								match.Team2ID != nil &&
+								*match.WinnerTeamID == *match.Team2ID,
+						),
+					}
+				>
+					if match.Team2Name == "" {
+						<span class="text-zinc-500">
+							TBD
+						</span>
+					} else {
+						<span>{ match.Team2Name }</span>
+					}
+					<input
+						type="number"
+						name="score2"
+						value={ fmt.Sprintf("%d", match.Score2) }
+						disabled?={ match.Status == models.MatchStatusCompleted }
+						class="
+        w-16
+        bg-zinc-800
+        rounded
+        px-2
+        py-1
+        "
+					/>
+				</div>
+			</div>
+			<button
+				type="submit"
+				disabled?={ match.Status == models.MatchStatusCompleted }
+				class="
+        w-full
+        bg-blue-600
+        hover:bg-blue-500
+        rounded-lg
+        py-2
+        font-semibold
+        disabled:bg-zinc-700
+        "
+			>
+				Complete Match
+			</button>
+		</form>
+	</div>
+}
+
+templ MatchStatusClass(
+	status int,
+) {
+	switch status {
+		case models.MatchStatusPending:
+			<text>
+				border-zinc-800
+			</text>
+		case models.MatchStatusActive:
+			<text>
+				border-yellow-500
+			</text>
+		case models.MatchStatusCompleted:
+			<text>
+				border-green-500
+			</text>
+	}
+}
+
+templ Bracket(
+	tournamentID int64,
+	rounds []models.BracketRoundView,
+) {
+	<div
+		id="bracket"
+		class="
+        flex
+        gap-24
+        items-start
+        overflow-x-auto
+        p-12
+        min-h-screen
+    "
+	>
+		for _, round := range rounds {
+			<div
+				class={
+					"flex flex-col",
+				
+					templ.KV(
+						"gap-6",
+						round.Round == 1,
+					),
+				
+					templ.KV(
+						"gap-24 mt-16",
+						round.Round == 2,
+					),
+				
+					templ.KV(
+						"gap-52 mt-40",
+						round.Round == 3,
+					),
+				
+					templ.KV(
+						"mt-[320px]",
+						round.Round == 4,
+					),
+				}
+			>
+				<h2
+					class="
+                    text-2xl
+                    font-bold
+                    text-zinc-400
+                    mb-4
+                "
+				>
+					Round { fmt.Sprintf("%d", round.Round) }
+				</h2>
+				for _, match := range round.Matches {
+					@MatchCard(
+						tournamentID,
+						match,
+					)
+				}
+			</div>
+		}
+	</div>
+}
