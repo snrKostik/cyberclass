@@ -1,0 +1,96 @@
+package templates
+
+import (
+	"fmt"
+	"github.com/snrkostik/cyberclass/models"
+)
+
+//templ AdminPage(
+//	tournamentID int64,
+//	teams []models.Team,
+//	rounds []models.BracketRoundView,
+//) {
+//	@Layout("Tournament Admin") {
+//		<div class="p-8 space-y-8">
+//			<h1 class="text-4xl font-bold">
+//				Tournament Admin
+//			</h1>
+//			@TeamList(
+//				tournamentID,
+//				teams,
+//			)
+//			@Bracket(
+//				tournamentID,
+//				rounds,
+//			)
+//		</div>
+//	}
+//}
+templ AdminContent(
+	tournamentID int64,
+	teams []models.Team,
+	rounds []models.BracketRoundView,
+	hasBracket bool,
+) {
+	<div
+		id="admin-content"
+		class="space-y-8"
+	>
+		@TeamList(
+			tournamentID,
+			teams,
+		)
+		if !hasBracket && len(teams) == 16 {
+			<form
+				hx-post={ fmt.Sprintf(
+					"/tournaments/%d/generate",
+					tournamentID,
+				) }
+				hx-target="#admin-content"
+				hx-swap="outerHTML"
+			>
+				<button
+					type="submit"
+					class="
+					bg-green-600
+					hover:bg-green-500
+					px-6
+					py-3
+					rounded-xl
+					font-bold
+					text-lg
+				"
+				>
+					Generate Bracket
+				</button>
+			</form>
+		}
+		if hasBracket {
+			@Bracket(
+				tournamentID,
+				rounds,
+			)
+		}
+	</div>
+}
+
+templ AdminPage(
+	tournamentID int64,
+	teams []models.Team,
+	rounds []models.BracketRoundView,
+	hasBracket bool,
+) {
+	@Layout("Tournament Admin") {
+		<div class="p-8">
+			<h1 class="text-4xl font-bold mb-8">
+				Tournament Admin
+			</h1>
+			@AdminContent(
+				tournamentID,
+				teams,
+				rounds,
+				hasBracket,
+			)
+		</div>
+	}
+}

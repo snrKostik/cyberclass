@@ -1,0 +1,95 @@
+package templates
+
+import (
+	"fmt"
+	"github.com/snrkostik/cyberclass/models"
+)
+
+templ TeamList(
+	tournamentID int64,
+	teams []models.Team,
+) {
+	<div
+		id="team-list"
+		class="
+		bg-zinc-900
+		border border-zinc-800
+		rounded-xl
+		p-6
+	"
+	>
+		<div class="flex justify-between items-center mb-4">
+			<h2 class="text-2xl font-bold">
+				Teams
+			</h2>
+			<div class="text-zinc-400">
+				{ fmt.Sprintf("%d / 16", len(teams)) }
+			</div>
+		</div>
+		<div class="space-y-2 mb-6">
+			for i, team := range teams {
+				<div
+					class="
+					bg-zinc-800
+					rounded-lg
+					p-3
+					flex justify-between items-center
+				"
+				>
+					<div class="flex gap-3 items-center">
+						<div
+							class="
+							w-8 h-8
+							bg-zinc-700
+							rounded-full
+							flex items-center justify-center
+							text-sm
+						"
+						>
+							{ fmt.Sprintf("%d", i+1) }
+						</div>
+						<span class="font-medium">
+							{ team.Name }
+						</span>
+					</div>
+				</div>
+			}
+		</div>
+		if len(teams) < 16 {
+			<form
+				hx-post={ fmt.Sprintf(
+					"/tournaments/%d/teams",
+					tournamentID,
+				) }
+				hx-target="#admin-content"
+				hx-swap="outerHTML"
+				class="flex gap-3"
+			>
+				<input
+					type="text"
+					name="name"
+					placeholder="Team name"
+					class="
+					flex-1
+					bg-zinc-800
+					border border-zinc-700
+					rounded-lg
+					p-3
+				"
+				/>
+				<button
+					type="submit"
+					class="
+					bg-blue-600
+					hover:bg-blue-500
+					px-5
+					rounded-lg
+					font-semibold
+				"
+				>
+					Add
+				</button>
+			</form>
+		}
+	</div>
+}
