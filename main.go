@@ -54,6 +54,16 @@ func main() {
 		appHandler.AddTeam,
 	)
 
+	app.Delete(
+		"/tournaments/:tournamentID/teams/:teamID",
+		appHandler.DeleteTeam,
+	)
+
+	app.Post(
+		"/tournaments/:id/delete",
+		appHandler.DeleteTournament,
+	)
+
 	app.Get(
 		"/tournaments/:id/matches",
 		appHandler.GetTournamentMatches,
@@ -67,6 +77,16 @@ func main() {
 	app.Get(
 		"/admin/:id",
 		appHandler.AdminPage,
+	)
+
+	app.Get(
+		"/display/:id",
+		appHandler.DisplayPage,
+	)
+
+	app.Get(
+		"/display/:id/content",
+		appHandler.DisplayContent,
 	)
 
 	log.Fatal(app.Listen(":3000"))

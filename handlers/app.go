@@ -8,8 +8,10 @@ import (
 type App struct {
 	store *store.SQLiteStore
 
-	bracketService *services.BracketService
-	matchService   *services.MatchService
+	bracketService   *services.BracketService
+	matchService     *services.MatchService
+	standingsService *services.StandingsService
+	timerService     *services.TimerService
 }
 
 func NewApp(
@@ -19,7 +21,9 @@ func NewApp(
 	return &App{
 		store: store,
 
-		bracketService: services.NewBracketService(store),
-		matchService:   services.NewMatchService(store),
+		bracketService:   services.NewBracketService(store),
+		matchService:     services.NewMatchService(store),
+		standingsService: services.NewStandingsService(store),
+		timerService:     services.NewTimerService(),
 	}
 }

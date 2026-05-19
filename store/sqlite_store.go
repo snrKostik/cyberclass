@@ -118,11 +118,13 @@ func (s *SQLiteStore) CreateTeam(
 		`
 		INSERT INTO teams (
 			name,
+			slogan,
 			created_at
 		)
-		VALUES (?, ?)
+		VALUES (?, ?, ?)
 		`,
 		team.Name,
+		team.Slogan,
 		team.CreatedAt,
 	)
 
@@ -187,6 +189,7 @@ func (s *SQLiteStore) GetTeamsByTournament(
 		SELECT
 			t.id,
 			t.name,
+			t.slogan,
 			t.created_at
 		FROM tournament_teams tt
 		INNER JOIN teams t
@@ -212,6 +215,7 @@ func (s *SQLiteStore) GetTeamsByTournament(
 		err := rows.Scan(
 			&t.ID,
 			&t.Name,
+			&t.Slogan,
 			&t.CreatedAt,
 		)
 
@@ -673,4 +677,58 @@ func (s *SQLiteStore) TournamentHasBracket(
 	}
 
 	return count > 0, nil
+}
+
+func (s *SQLiteStore) DeleteTeam(
+	ctx context.Context,
+	id int64,
+) error {
+
+	_, err := s.db.ExecContext(
+		ctx,
+		`
+		DELETE FROM teams
+		WHERE id = ?
+		`,
+		id,
+	)
+
+	return err
+}
+
+func (s *SQLiteStore) DeleteTournament(
+	ctx context.Context,
+	id int64,
+) error {
+
+	_, err := s.db.ExecContext(
+		ctx,
+		`
+		DELETE FROM tournaments
+		WHERE id = ?
+		`,
+		id,
+	)
+
+	return err
+}
+
+func (s *SQLiteStore) UpdateTournamentStatus(
+	ctx context.Context,
+	id int64,
+	status int,
+) error {
+
+	_, err := s.db.ExecContext(
+		ctx,
+		`
+		UPDATE tournaments
+		SET status = ?
+		WHERE id = ?
+		`,
+		status,
+		id,
+	)
+
+	return err
 }

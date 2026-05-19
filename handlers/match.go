@@ -42,6 +42,7 @@ func (a *App) CompleteMatch(
 		req.Score1,
 		req.Score2,
 	)
+	a.timerService.Start30Seconds()
 
 	if err != nil {
 		return err

@@ -65,4 +65,20 @@ type Store interface {
 		ctx context.Context,
 		tournamentID int64,
 	) (bool, error)
+
+	DeleteTeam(
+		ctx context.Context,
+		id int64,
+	) error
+
+	DeleteTournament(
+		ctx context.Context,
+		id int64,
+	) error
+
+	UpdateTournamentStatus(
+		ctx context.Context,
+		id int64,
+		status int,
+	) error
 }

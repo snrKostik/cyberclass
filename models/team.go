@@ -1,29 +1,23 @@
 package models
 
 type Team struct {
-	ID int64
-
-	Name string
-
+	ID        int64
+	Name      string
+	Slogan    string
 	CreatedAt int64
 }
 
 type TournamentTeam struct {
-	ID int64
-
+	ID           int64
 	TournamentID int64
 	TeamID       int64
-
-	Seed *int
-
-	JoinedAt int64
+	Seed         *int
+	JoinedAt     int64
 }
 
 type TeamMember struct {
-	ID int64
-
+	ID       int64
 	TeamID   int64
 	PlayerID int64
-
 	JoinedAt int64
 }

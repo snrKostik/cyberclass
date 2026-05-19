@@ -5,6 +5,7 @@ import (
 	"strconv"
 
 	"github.com/gofiber/fiber/v2"
+	"github.com/snrkostik/cyberclass/models"
 	"github.com/snrkostik/cyberclass/templates"
 )
 
@@ -21,7 +22,6 @@ func (a *App) GenerateBracket(
 		10,
 		64,
 	)
-
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
@@ -30,7 +30,6 @@ func (a *App) GenerateBracket(
 	}
 
 	var req GenerateBracketRequest
-
 	if err := c.BodyParser(&req); err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
@@ -44,7 +43,15 @@ func (a *App) GenerateBracket(
 			tournamentID,
 			req.TeamIDs,
 		)
+	if err != nil {
+		return err
+	}
 
+	err = a.store.UpdateTournamentStatus(
+		context.Background(),
+		tournamentID,
+		models.TournamentStatusActive,
+	)
 	if err != nil {
 		return err
 	}

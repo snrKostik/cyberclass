@@ -1,0 +1,114 @@
+package templates
+
+import (
+	"fmt"
+	"github.com/snrkostik/cyberclass/models"
+)
+
+templ DisplayPage(
+	tournamentID int64,
+	rounds []models.BracketRoundView,
+	standings *models.Standings,
+	secondsLeft int64,
+) {
+	<!DOCTYPE html>
+	<html>
+		<head>
+			<title>
+				Tournament Display
+			</title>
+			<script src="https://unpkg.com/htmx.org@1.9.12"></script>
+			<script src="https://cdn.tailwindcss.com"></script>
+		</head>
+		<body
+			class="
+		bg-black
+		text-white
+		min-h-screen
+	"
+		>
+			<div
+				id="display-content"
+				hx-get={ fmt.Sprintf(
+				"/display/%d/content",
+				tournamentID,
+			) }
+				hx-trigger="every 2s"
+				hx-swap="innerHTML"
+			>
+				@DisplayContent(
+					tournamentID,
+					rounds,
+					standings,
+					secondsLeft,
+				)
+			</div>
+		</body>
+	</html>
+}
+
+templ DisplayContent(
+	tournamentID int64,
+	rounds []models.BracketRoundView,
+	standings *models.Standings,
+	secondsLeft int64,
+) {
+
+<div class="flex gap-16 items-start">
+
+	if secondsLeft > 0 {
+
+		<div
+			class="
+				fixed
+				top-8
+				right-8
+				bg-zinc-900/90
+				border border-zinc-700
+				rounded-xl
+				p-6
+				text-center
+				z-50
+			"
+		>
+
+			<div class="text-zinc-400 mb-2">
+				Next Match
+			</div>
+
+			<div
+				class="
+					text-5xl
+					font-bold
+				"
+			>
+
+				{
+					fmt.Sprintf(
+						"00:%02d",
+						secondsLeft,
+					)
+				}
+
+			</div>
+
+		</div>
+
+	}
+
+	<div class="scale-125 origin-top-left">
+
+		@Bracket(
+			tournamentID,
+			rounds,
+		)
+
+	</div>
+
+	@StandingsCard(
+		standings,
+	)
+
+</div>
+
+}

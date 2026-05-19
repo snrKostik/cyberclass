@@ -3,6 +3,7 @@ package handlers
 import (
 	"context"
 	"fmt"
+	"strconv"
 	"time"
 
 	"github.com/gofiber/fiber/v2"
@@ -56,4 +57,30 @@ func (a *App) CreateTournament(
 			tournament.ID,
 		),
 	)
+}
+
+func (a *App) DeleteTournament(
+	c *fiber.Ctx,
+) error {
+
+	tournamentID, err := strconv.ParseInt(
+		c.Params("id"),
+		10,
+		64,
+	)
+
+	if err != nil {
+		return err
+	}
+
+	err = a.store.DeleteTournament(
+		context.Background(),
+		tournamentID,
+	)
+
+	if err != nil {
+		return err
+	}
+
+	return c.Redirect("/")
 }
