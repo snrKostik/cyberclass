@@ -8,6 +8,7 @@ import (
 templ MatchCard(
 	tournamentID int64,
 	match models.MatchView,
+	isAdmin bool,
 ) {
 	<div
 		class="
@@ -44,7 +45,7 @@ templ MatchCard(
 				>
 					if match.Team1Name == "" {
 						<span class="text-zinc-500">
-							TBD
+							Будет Уточнено
 						</span>
 					} else {
 						<span>{ match.Team1Name }</span>
@@ -71,7 +72,7 @@ templ MatchCard(
 				>
 					if match.Team2Name == "" {
 						<span class="text-zinc-500">
-							TBD
+							Будет Уточнено
 						</span>
 					} else {
 						<span>{ match.Team2Name }</span>
@@ -81,31 +82,20 @@ templ MatchCard(
 						name="score2"
 						value={ fmt.Sprintf("%d", match.Score2) }
 						disabled?={ match.Status == models.MatchStatusCompleted }
-						class="
-        w-16
-        bg-zinc-800
-        rounded
-        px-2
-        py-1
-        "
+						class="w-16 bg-zinc-800 rounded px-2 py-1"
 					/>
 				</div>
 			</div>
-			<button
-				type="submit"
-				disabled?={ match.Status == models.MatchStatusCompleted }
-				class="
-        w-full
-        bg-blue-600
-        hover:bg-blue-500
-        rounded-lg
-        py-2
-        font-semibold
-        disabled:bg-zinc-700
-        "
-			>
-				Complete Match
-			</button>
+			if isAdmin {
+				@Button("submit", "#", "Завершить Матч", "border-image-blue", `
+                        px-0 w-full
+                        py-3
+                        border-image-blue
+                        hover:border-image-blue-active
+                        disabled:border-image-blue-disabled
+                        `,
+					match.Status == models.MatchStatusCompleted)
+			}
 		</form>
 	</div>
 }
@@ -132,6 +122,7 @@ templ MatchStatusClass(
 templ Bracket(
 	tournamentID int64,
 	rounds []models.BracketRoundView,
+	isAdmin bool,
 ) {
 	<div
 		id="bracket"
@@ -171,19 +162,15 @@ templ Bracket(
 				}
 			>
 				<h2
-					class="
-                    text-2xl
-                    font-bold
-                    text-zinc-400
-                    mb-4
-                "
+					class="text-2xl font-bold text-zinc-400 mb-4"
 				>
-					Round { fmt.Sprintf("%d", round.Round) }
+					Раунд { fmt.Sprintf("%d", round.Round) }
 				</h2>
 				for _, match := range round.Matches {
 					@MatchCard(
 						tournamentID,
 						match,
+						isAdmin,
 					)
 				}
 			</div>

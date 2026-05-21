@@ -29,7 +29,7 @@ CREATE TABLE IF NOT EXISTS tournaments (
 
 CREATE TABLE IF NOT EXISTS teams (
     id              INTEGER PRIMARY KEY AUTOINCREMENT,
-    name            TEXT NOT NULL UNIQUE,
+    name            TEXT NOT NULL,
 	slogan TEXT NOT NULL DEFAULT '',
     created_at      INTEGER NOT NULL
 );

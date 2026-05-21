@@ -24,6 +24,8 @@ func main() {
 
 	app := fiber.New()
 
+	app.Static("/", "./resources")
+
 	app.Get(
 		"/",
 		appHandler.HomePage,

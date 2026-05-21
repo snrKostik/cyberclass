@@ -1,0 +1,54 @@
+package templates
+
+import "fmt"
+
+templ Button(btn_type string,
+	href string,
+	text string,
+	custom_button string,
+	custom string,
+	isDisabled bool) {
+	<button
+		type={ btn_type }
+		if custom == "" {
+			class={ fmt.Sprintf(`
+            px-8 py-3
+            %s
+            hover:%s-active
+            %s
+        `, custom_button, custom_button, custom) }
+		} else {
+			class={ custom }
+		}
+		if isDisabled {
+			disabled
+		}
+		onclick="playSound()"
+		href={ href }
+	>
+		@textButton(text)
+	</button>
+}
+
+templ HyperButton(href string,
+	text string,
+	custom_button string) {
+	<a
+		class={ fmt.Sprintf(`
+                inline-flex items-center justify-center cursor-pointer 
+                transition-all duration-50
+                %s
+                active:translate-x-0.5 active:translate-y-0.5
+                hover:%s-active
+        `, custom_button, custom_button) }
+		onclick={ templ.JSFuncCall("playSoundAndNavigate", href) }
+	>
+		@textButton(text)
+	</a>
+}
+
+templ textButton(text string) {
+	<span class="px-8 py-3">
+		{ text }
+	</span>
+}

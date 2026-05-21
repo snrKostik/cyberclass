@@ -1,0 +1,73 @@
+/* DEFAULT BUTTON */
+.border-image-default {
+    border: 2px solid transparent;
+    border-image-source: url('/img/menu_button.png');
+    border-image-slice: 2 fill;
+    border-image-width: 8px;
+    border-image-repeat: repeat;
+    image-rendering: pixelated;
+}
+
+.hover\:border-image-default-active:hover {
+    border: 2px solid transparent;
+    border-image-source: url('/img/active_menu_button.png');
+    border-image-slice: 2 fill;
+    border-image-width: 8px;
+    border-image-repeat: repeat;
+    image-rendering: pixelated;
+}
+/* DELETE BUTTON */
+.border-image-delete {
+    border: 2px solid transparent;
+    border-image-source: url('/img/delete_button.png');
+    border-image-slice: 2 fill;
+    border-image-width: 8px;
+    border-image-repeat: repeat;
+    image-rendering: pixelated;
+}
+
+.hover\:border-image-delete-active:hover {
+    border: 2px solid transparent;
+    border-image-source: url('/img/active_delete_button.png');
+    border-image-slice: 2 fill;
+    border-image-width: 8px;
+    border-image-repeat: repeat;
+    image-rendering: pixelated;
+}
+/* BLUE BUTTON */
+.border-image-blue {
+    border: 2px solid transparent;
+    border-image-source: url('/img/blue_button.png');
+    border-image-slice: 2 fill;
+    border-image-width: 8px;
+    border-image-repeat: repeat;
+    image-rendering: pixelated;
+}
+
+.hover\:border-image-blue-active:hover {
+    border: 2px solid transparent;
+    border-image-source: url('/img/active_blue_button.png');
+    border-image-slice: 2 fill;
+    border-image-width: 8px;
+    border-image-repeat: repeat;
+    image-rendering: pixelated;
+}
+
+.border-image-blue:disabled {
+    border: 2px solid transparent;
+    border-image-source: url('/img/blue_button.png');
+    border-image-slice: 2 fill;
+    border-image-width: 8px;
+    border-image-repeat: repeat;
+    image-rendering: pixelated;
+    filter:brightness(0.6)
+}
+
+@font-face {
+    font-family: minecraft;
+    src: url(/fonts/minecraft.ttf);
+}
+
+* {
+    font-family: minecraft;
+}

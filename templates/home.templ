@@ -12,14 +12,9 @@ templ HomePage(
 		<div class="max-w-5xl mx-auto p-8">
 			<div class="flex justify-between items-center mb-8">
 				<h1 class="text-4xl font-bold">
-					Tournament Admin
+					Администратор турнира
 				</h1>
-				<a
-					href="/tournaments/new"
-					class="bg-blue-600 hover:bg-blue-500 px-4 py-2 rounded-lg font-semibold"
-				>
-					New Tournament
-				</a>
+				@HyperButton("/tournaments/new", "Новый Турнир", "border-image-blue")
 			</div>
 			<div class="space-y-4">
 				for _, t := range tournaments {
@@ -34,29 +29,17 @@ templ HomePage(
 								{ t.Game }
 							</div>
 						</div>
+						<!-- BUTTONS -->
 						<div class="flex gap-3">
-							<a
-								href={ fmt.Sprintf(
-                            "/admin/%d",
-                            t.ID,
-                            ) }
-								class="bg-zinc-800 hover:bg-zinc-700 px-4 py-2 rounded-lg"
-							>
-								Open
-							</a>
+							@HyperButton(fmt.Sprintf("/display/%d", t.ID), "Проектор", "border-image-default")
+							@HyperButton(fmt.Sprintf("/admin/%d", t.ID), "Открыть", "border-image-default")
 							<form
 								method="POST"
-								action={ fmt.Sprintf(
-                            "/tournaments/%d/delete",
-                            t.ID,
-                            ) }
+								action={ fmt.Sprintf("/tournaments/%d/delete", t.ID) }
+								hx-boost="true"
+								hx-confirm="Вы уверены?"
 							>
-								<button
-									type="submit"
-									class=" bg-red-600 hover:bg-red-500 px-4 py-2 rounded-lg"
-								>
-									Delete
-								</button>
+								@Button("submit", "#", "Удалить", "border-image-delete", "", false)
 							</form>
 						</div>
 					</div>

@@ -13,29 +13,6 @@ import (
 	"github.com/snrkostik/cyberclass/models"
 )
 
-// templ AdminPage(
-//
-//	tournamentID int64,
-//	teams []models.Team,
-//	rounds []models.BracketRoundView,
-//
-//	) {
-//		@Layout("Tournament Admin") {
-//			<div class="p-8 space-y-8">
-//				<h1 class="text-4xl font-bold">
-//					Tournament Admin
-//				</h1>
-//				@TeamList(
-//					tournamentID,
-//					teams,
-//				)
-//				@Bracket(
-//					tournamentID,
-//					rounds,
-//				)
-//			</div>
-//		}
-//	}
 func AdminContent(
 	tournamentID int64,
 	teams []models.Team,
@@ -84,13 +61,13 @@ func AdminContent(
 				tournamentID,
 			))
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/admin.templ`, Line: 48, Col: 5}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/admin.templ`, Line: 27, Col: 5}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ_7745c5c3_Var2)
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 3, "\" hx-target=\"#admin-content\" hx-swap=\"outerHTML\"><button type=\"submit\" class=\"bg-green-600 hover:bg-green-500 px-6 py-3 rounded-xl font-bold text-lg\">Generate Bracket</button></form>")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 3, "\" hx-target=\"#admin-content\" hx-swap=\"outerHTML\"><button type=\"submit\" class=\"bg-green-600 hover:bg-green-500 px-6 py-3 rounded-xl font-bold text-lg\">Сгенерировать сетку</button></form>")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
@@ -99,6 +76,7 @@ func AdminContent(
 			templ_7745c5c3_Err = Bracket(
 				tournamentID,
 				rounds,
+				true,
 			).Render(ctx, templ_7745c5c3_Buffer)
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
@@ -150,7 +128,7 @@ func AdminPage(
 				}()
 			}
 			ctx = templ.InitializeContext(ctx)
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 5, "<div class=\"p-8\"><h1 class=\"text-4xl font-bold mb-8\">Tournament Admin</h1>")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 5, "<div class=\"p-8\"><h1 class=\"text-4xl font-bold mb-8\">Администратор турнира</h1>")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}

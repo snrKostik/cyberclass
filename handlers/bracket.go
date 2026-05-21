@@ -117,6 +117,7 @@ func (a *App) BracketPartial(
 	return templates.Bracket(
 		tournamentID,
 		rounds,
+		true,
 	).Render(
 		context.Background(),
 		c.Response().BodyWriter(),

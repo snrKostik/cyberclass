@@ -41,7 +41,15 @@ func NewTournamentPage() templ.Component {
 				}()
 			}
 			ctx = templ.InitializeContext(ctx)
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<div class=\"max-w-2xl mx-auto p-8\"><h1 class=\"text-4xl font-bold mb-8\">Create Tournament</h1><form method=\"POST\" action=\"/tournaments\" class=\"space-y-6\"><div><label class=\"block mb-2\">Tournament Name</label> <input type=\"text\" name=\"name\" class=\"w-full bg-zinc-900 border border-zinc-800 rounded-lg p-3\"></div><div><label class=\"block mb-2\">Game</label> <input type=\"text\" name=\"game\" class=\"w-full bg-zinc-900 border border-zinc-800 rounded-lg p-3\"></div><button type=\"submit\" class=\"bg-blue-600 hover:bg-blue-500 px-6 py-3 rounded-lg font-semibold\">Create Tournament</button></form></div>")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<div class=\"max-w-2xl mx-auto p-8\"><h1 class=\"text-4xl font-bold mb-8\">Создать Турнир</h1><form method=\"POST\" action=\"/tournaments\" class=\"space-y-6\"><div><label class=\"block mb-2\">Имя турнира</label> <input type=\"text\" name=\"name\" class=\"w-full bg-zinc-900 border border-zinc-800 rounded-lg p-3\"></div><div><label class=\"block mb-2\">Название игры</label> <input type=\"text\" name=\"game\" class=\"w-full bg-zinc-900 border border-zinc-800 rounded-lg p-3\"></div>")
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+			templ_7745c5c3_Err = Button("submit", "#", "Создать Турнир", "border-image-blue", "", false).Render(ctx, templ_7745c5c3_Buffer)
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "</form></div>")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}

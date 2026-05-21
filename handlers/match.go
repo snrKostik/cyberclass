@@ -71,6 +71,7 @@ func (a *App) CompleteMatch(
 	return templates.Bracket(
 		match.TournamentID,
 		rounds,
+		true,
 	).Render(
 		context.Background(),
 		c.Response().BodyWriter(),

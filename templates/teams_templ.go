@@ -37,7 +37,7 @@ func TeamList(
 			templ_7745c5c3_Var1 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<div id=\"team-list\" class=\"bg-zinc-900 border border-zinc-800 rounded-xl p-6\"><div class=\"flex justify-between items-center mb-4\"><h2 class=\"text-2xl font-bold\">Teams</h2><div class=\"text-zinc-400\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<div id=\"team-list\" class=\"bg-zinc-900 border border-zinc-800 rounded-xl p-6\"><div class=\"flex justify-between items-center mb-4\"><h2 class=\"text-2xl font-bold\">Команды</h2><div class=\"text-zinc-400\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -121,7 +121,7 @@ func TeamList(
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 9, "\" hx-target=\"#admin-content\" hx-swap=\"outerHTML\" class=\"text-red-400 hover:text-red-300 text-sm\">Delete</button></div>")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 9, "\" hx-target=\"#admin-content\" hx-swap=\"outerHTML\" class=\"text-red-400 hover:text-red-300 text-sm\">Удалить</button></div>")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
@@ -147,7 +147,7 @@ func TeamList(
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 12, "\" hx-target=\"#admin-content\" hx-swap=\"outerHTML\" class=\"flex gap-3\"><input type=\"text\" name=\"name\" placeholder=\"Team name\" class=\"flex-1 bg-zinc-800 border border-zinc-700 rounded-lg p-3\"> <input type=\"text\" name=\"slogan\" placeholder=\"Team slogan\" class=\"flex-1 bg-zinc-800 border border-zinc-700 rounded-lg p-3\"> <button type=\"submit\" class=\"bg-blue-600 hover:bg-blue-500 px-5 rounded-lg font-semibold\">Add</button></form>")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 12, "\" hx-target=\"#admin-content\" hx-swap=\"outerHTML\" class=\"flex gap-3\"><input type=\"text\" name=\"name\" placeholder=\"Имя Команды\" class=\"flex-1 bg-zinc-800 border border-zinc-700 rounded-lg p-3\"> <input type=\"text\" name=\"slogan\" placeholder=\"Слоган Команды(если есть)\" class=\"flex-1 bg-zinc-800 border border-zinc-700 rounded-lg p-3\"> <button type=\"submit\" class=\"bg-blue-600 hover:bg-blue-500 px-5 rounded-lg font-semibold\">Добавить</button></form>")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}

@@ -19,6 +19,7 @@ templ DisplayPage(
 			</title>
 			<script src="https://unpkg.com/htmx.org@1.9.12"></script>
 			<script src="https://cdn.tailwindcss.com"></script>
+			<link rel="stylesheet" href="/style.css"/>
 		</head>
 		<body
 			class="
@@ -27,6 +28,7 @@ templ DisplayPage(
 		min-h-screen
 	"
 		>
+			@Logo()
 			<div
 				id="display-content"
 				hx-get={ fmt.Sprintf(
@@ -53,13 +55,10 @@ templ DisplayContent(
 	standings *models.Standings,
 	secondsLeft int64,
 ) {
-
-<div class="flex gap-16 items-start">
-
-	if secondsLeft > 0 {
-
-		<div
-			class="
+	<div class="flex gap-16 items-start">
+		if secondsLeft > 0 {
+			<div
+				class="
 				fixed
 				top-8
 				right-8
@@ -70,45 +69,33 @@ templ DisplayContent(
 				text-center
 				z-50
 			"
-		>
-
-			<div class="text-zinc-400 mb-2">
-				Next Match
-			</div>
-
-			<div
-				class="
-					text-5xl
-					font-bold
-				"
 			>
-
-				{
+				<div class="text-zinc-400 mb-2">
+					Следующий Матч
+				</div>
+				<div
+					class="
+					text-5xl
+                    font-bold
+				"
+				>
+					{ 
 					fmt.Sprintf(
 						"00:%02d",
 						secondsLeft,
-					)
-				}
-
+					) }
+				</div>
 			</div>
-
+		}
+		<div class="scale-125 origin-top-left">
+			@Bracket(
+				tournamentID,
+				rounds,
+                false,
+			)
 		</div>
-
-	}
-
-	<div class="scale-125 origin-top-left">
-
-		@Bracket(
-			tournamentID,
-			rounds,
+		@StandingsCard(
+			standings,
 		)
-
 	</div>
-
-	@StandingsCard(
-		standings,
-	)
-
-</div>
-
 }
