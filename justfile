@@ -3,3 +3,6 @@ gen:
 
 run: gen
     go run .
+
+live:
+    air
