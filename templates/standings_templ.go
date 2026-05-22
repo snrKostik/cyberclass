@@ -34,7 +34,7 @@ func StandingsCard(
 		}
 		ctx = templ.ClearChildren(ctx)
 		if standings != nil {
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<div class=\"bg-zinc-900 border border-zinc-800 rounded-xl p-6 w-[420px]\"><h2 class=\"text-3xl font-bold mb-6\">Standings</h2><div class=\"space-y-4\"><div class=\"text-2xl\">🥇 ")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<div class=\"bg-zinc-900 border border-zinc-800 rounded-xl p-6 w-[420px]\"><h2 class=\"text-3xl font-bold mb-6\">Места</h2><div class=\"space-y-4\"><div class=\"text-2xl\">🥇 ")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
@@ -60,7 +60,7 @@ func StandingsCard(
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 3, "</div><div><div class=\"mb-2 text-zinc-400\">🥉 Third Place</div><div class=\"space-y-1\">")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 3, "</div><div><div class=\"mb-2 text-zinc-400\">🥉 Третье Место</div><div class=\"space-y-1\">")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
